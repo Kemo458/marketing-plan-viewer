@@ -283,23 +283,23 @@
                 Loading Marketing Plan...
             </div>
             <div class="pdf-error" id="pdfError" style="display: none;">
-                <div class="error-icon">⚠️</div>
-                <h3>PDF Loading Issue</h3>
-                <p>The marketing plan PDF is temporarily unavailable for direct viewing. Please use the email request option below to receive a copy.</p>
+                <div class="error-icon">📄</div>
+                <h3>Marketing Plan Information</h3>
+                <p>The comprehensive 1.1GB marketing plan is hosted on Google Drive. If the preview doesn't load above, you can:</p>
+                <ul style="text-align: left; margin: 15px 0;">
+                    <li>View directly on <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" target="_blank" style="color: #3b82f6;">Google Drive</a></li>
+                    <li>Request a copy via email using the button below</li>
+                </ul>
             </div>
             <div id="pdfFrame" class="pdf-embed" style="display: none;">
-                <object 
-                    data="https://valentingrozdev.space/cv_marketing/marketing_plan.pdf" 
-                    type="application/pdf"
+                <iframe 
+                    src="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/preview"
                     width="100%"
                     height="100%"
                     onload="hideLoading()"
-                    onerror="showPdfError()">
-                    <p>
-                        Unable to display PDF file. 
-                        <a href="https://valentingrozdev.space/cv_marketing/marketing_plan.pdf" target="_blank">Download the PDF</a> instead.
-                    </p>
-                </object>
+                    onerror="showPdfError()"
+                    style="border: none;">
+                </iframe>
             </div>
         </div>
 
@@ -379,11 +379,10 @@
             }
         }
         
-        // Fallback loading hide (shorter timeout since PDF may not load)
+        // Fallback loading hide (longer timeout for Google Drive)
         setTimeout(() => {
             hideLoading();
-            showPdfError();
-        }, 3000);
+        }, 8000);
     </script>
 </body>
 </html>
