@@ -262,20 +262,14 @@
             <h1>Marketing Plan</h1>
             <p>Comprehensive digital marketing strategy and growth plan</p>
             <div class="pdf-controls">
-                <button class="control-btn" onclick="zoomIn()">
-                    🔍+ Zoom In
-                </button>
-                <button class="control-btn" onclick="zoomOut()">
-                    🔍- Zoom Out
-                </button>
-                <button class="control-btn" onclick="resetZoom()">
-                    🔄 Reset
-                </button>
                 <button class="control-btn" onclick="toggleFullscreen()">
-                    🖥️ Fullscreen
+                    🖥️ Fullscreen View
                 </button>
                 <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" target="_blank" class="control-btn">
-                    📄 Full PDF
+                    📄 View Full PDF
+                </a>
+                <a href="mailto:contact@valentingrozdev.space?subject=Marketing Plan Request&body=Hi Valentin, I would like to receive a copy of your comprehensive marketing plan." class="control-btn">
+                    📧 Email Request
                 </a>
             </div>
         </div>
@@ -295,12 +289,28 @@
                 </ul>
             </div>
             <div id="pdfFrame" class="pdf-embed" style="display: none;">
-                <img 
-                    src="https://maas-log-prod.cn-wlcb.ufileos.com/anthropic/090e5078-23d5-4360-8820-56e870349ece/a6977d7b53c77709bf7b15fb08ddb16e.png?UCloudPublicKey=TOKEN_e15ba47a-d098-4fbd-9afc-a0dcf0e4e621&Expires=1760539105&Signature=CtYCaqroFC94CnL9kT6IvJYBnzQ=" 
-                    alt="Marketing Plan"
-                    style="max-width: 100%; max-height: 80vh; height: auto; width: auto; object-fit: contain; display: block; margin: 0 auto; border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px;"
-                    onload="hideLoading()"
-                    onerror="showPdfError()">
+                <div style="text-align: center; padding: 40px; background: rgba(59, 130, 246, 0.1); border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">📊</div>
+                    <h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 1.5rem;">Marketing Plan Preview</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px; font-size: 1.1rem;">
+                        This marketing plan contains comprehensive digital strategy, growth frameworks, and execution timelines.
+                    </p>
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="color: #22c55e; margin-bottom: 10px;">📋 What's Included:</h4>
+                        <ul style="text-align: left; color: #d1d5db; margin-left: 20px;">
+                            <li>Digital Marketing Strategy</li>
+                            <li>Growth & Acquisition Frameworks</li>
+                            <li>Performance Analytics & KPIs</li>
+                            <li>Implementation Timeline</li>
+                            <li>ROI Projections</li>
+                        </ul>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" 
+                       target="_blank" 
+                       style="display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: 600; margin: 10px;">
+                        📄 View Full Marketing Plan
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -335,8 +345,6 @@
     </div>
 
     <script>
-        let currentZoom = 100;
-        
         function hideLoading() {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('pdfFrame').style.display = 'block';
@@ -346,29 +354,6 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('pdfError').style.display = 'block';
             document.getElementById('pdfFrame').style.display = 'none';
-        }
-        
-        function zoomIn() {
-            currentZoom = Math.min(currentZoom + 25, 200);
-            updateImageZoom();
-        }
-        
-        function zoomOut() {
-            currentZoom = Math.max(currentZoom - 25, 50);
-            updateImageZoom();
-        }
-        
-        function resetZoom() {
-            currentZoom = 100;
-            updateImageZoom();
-        }
-        
-        function updateImageZoom() {
-            const img = document.querySelector('#pdfFrame img');
-            if (img) {
-                img.style.transform = `scale(${currentZoom / 100})`;
-                img.style.transformOrigin = 'center center';
-            }
         }
         
         function toggleFullscreen() {
@@ -382,10 +367,8 @@
             }
         }
         
-        // Fallback loading hide
-        setTimeout(() => {
-            hideLoading();
-        }, 5000);
+        // Show content immediately - no loading needed
+        hideLoading();
     </script>
 </body>
 </html>
