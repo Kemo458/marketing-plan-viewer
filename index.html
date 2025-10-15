@@ -261,40 +261,15 @@
         <div class="pdf-header">
             <h1>Marketing Plan</h1>
             <p>Comprehensive digital marketing strategy and growth plan</p>
-            <div class="pdf-controls">
-                <button class="control-btn" onclick="zoomIn()">
-                    🔍+ Zoom In
-                </button>
-                <button class="control-btn" onclick="zoomOut()">
-                    🔍- Zoom Out
-                </button>
-                <button class="control-btn" onclick="resetZoom()">
-                    🔄 Reset View
-                </button>
-                <button class="control-btn" onclick="toggleFullscreen()">
-                    🖥️ Fullscreen
-                </button>
-            </div>
+            <!-- PDF controls disabled for standalone deployment -->
         </div>
 
         <div class="pdf-viewer">
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                Loading Marketing Plan...
+            <div class="pdf-error" id="pdfError" style="display: block;">
+                <div class="error-icon">📄</div>
+                <h3>Marketing Plan Available</h3>
+                <p>The comprehensive marketing plan is a 1.1GB PDF document with detailed strategy, execution framework, and growth analytics. Please use the download button below to request your copy via email.</p>
             </div>
-            <div class="pdf-error" id="pdfError" style="display: none;">
-                <div class="error-icon">⚠️</div>
-                <h3>PDF Loading Issue</h3>
-                <p>The marketing plan is a comprehensive 1.1GB PDF document. Please use the download button to request a copy via email.</p>
-            </div>
-            <iframe 
-                id="pdfFrame"
-                class="pdf-embed" 
-                src="data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9LaWRzWzMgMCBSXSAvVHlwZS9QYWdlcy9Db3VudCAxPj4KZW5kb2JqCjMgMCBvYmoKPDwvTWVkaWFCb3hbMCAwIDYxMiA3OTJdL1BhcmVudCAyIDAgUi9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNCAwIFI+Pj4+L1R5cGUvUGFnZT4KZW5kb2JqCjQgMCBvYmoKPDwvQmFzZUZvbnQvSGVsdmV0aWNhL1N1YnR5cGUvVHlwZTE+PgplbmRvYmoKeHJlZgowIDUKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDExNSAwMDAwMCBuIAowMDAwMDAwMTc3IDAwMDAwIG4gCnRyYWlsZXIKPDwvU2l6ZSA1L1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKMjI0CiUlRU9G"
-                onload="hideLoading()"
-                onerror="showPdfError()"
-                style="display: none;">
-            </iframe>
         </div>
 
         <div class="pdf-info">
@@ -328,56 +303,9 @@
     </div>
 
     <script>
-        let currentZoom = 100;
-        
-        function hideLoading() {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('pdfFrame').style.display = 'block';
-        }
-        
-        // Handle PDF loading errors
-        function showPdfError() {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('pdfError').style.display = 'block';
-            document.getElementById('pdfFrame').style.display = 'none';
-        }
-        
-        function zoomIn() {
-            currentZoom = Math.min(currentZoom + 25, 200);
-            updateZoom();
-        }
-        
-        function zoomOut() {
-            currentZoom = Math.max(currentZoom - 25, 50);
-            updateZoom();
-        }
-        
-        function resetZoom() {
-            currentZoom = 100;
-            updateZoom();
-        }
-        
-        function updateZoom() {
-            const frame = document.getElementById('pdfFrame');
-            const currentSrc = frame.src.split('#')[0];
-            frame.src = currentSrc + `#view=FitH&zoom=${currentZoom}&toolbar=1&navpanes=1&scrollbar=1`;
-        }
-        
-        function toggleFullscreen() {
-            const frame = document.getElementById('pdfFrame');
-            if (!document.fullscreenElement) {
-                frame.requestFullscreen().catch(err => {
-                    console.log('Error attempting to enable fullscreen:', err);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
-        
-        // Fallback loading hide
-        setTimeout(() => {
-            hideLoading();
-        }, 5000);
+        // Marketing plan viewer - standalone deployment
+        // PDF available via email request only
+        console.log('Marketing Plan Viewer loaded successfully');
     </script>
 </body>
 </html>
