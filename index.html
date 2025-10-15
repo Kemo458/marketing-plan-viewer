@@ -262,18 +262,12 @@
             <h1>Marketing Plan</h1>
             <p>Comprehensive digital marketing strategy and growth plan</p>
             <div class="pdf-controls">
-                <button class="control-btn" onclick="zoomIn()">
-                    🔍+ Zoom In
-                </button>
-                <button class="control-btn" onclick="zoomOut()">
-                    🔍- Zoom Out
-                </button>
-                <button class="control-btn" onclick="resetZoom()">
-                    🔄 Reset View
-                </button>
                 <button class="control-btn" onclick="toggleFullscreen()">
-                    🖥️ Fullscreen
+                    🖥️ Fullscreen View
                 </button>
+                <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" target="_blank" class="control-btn">
+                    📄 View Full PDF
+                </a>
             </div>
         </div>
 
@@ -283,23 +277,21 @@
                 Loading Marketing Plan...
             </div>
             <div class="pdf-error" id="pdfError" style="display: none;">
-                <div class="error-icon">📄</div>
-                <h3>Marketing Plan Information</h3>
-                <p>The comprehensive 1.1GB marketing plan is hosted on Google Drive. If the preview doesn't load above, you can:</p>
+                <div class="error-icon">📊</div>
+                <h3>Marketing Plan Preview</h3>
+                <p>Marketing plan preview image is loading. If it doesn't appear, you can:</p>
                 <ul style="text-align: left; margin: 15px 0;">
-                    <li>View directly on <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" target="_blank" style="color: #3b82f6;">Google Drive</a></li>
-                    <li>Request a copy via email using the button below</li>
+                    <li>View the full marketing plan on <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" target="_blank" style="color: #3b82f6;">Google Drive</a></li>
+                    <li>Request the complete PDF via email below</li>
                 </ul>
             </div>
             <div id="pdfFrame" class="pdf-embed" style="display: none;">
-                <iframe 
-                    src="https://docs.google.com/viewer?url=https://drive.google.com/uc?export=download&id=1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG&embedded=true"
-                    width="100%"
-                    height="100%"
+                <img 
+                    src="https://maas-log-prod.cn-wlcb.ufileos.com/anthropic/090e5078-23d5-4360-8820-56e870349ece/a6977d7b53c77709bf7b15fb08ddb16e.png?UCloudPublicKey=TOKEN_e15ba47a-d098-4fbd-9afc-a0dcf0e4e621&Expires=1760539105&Signature=CtYCaqroFC94CnL9kT6IvJYBnzQ=" 
+                    alt="Marketing Plan"
+                    style="width: 100%; height: auto; max-width: 100%; object-fit: contain;"
                     onload="hideLoading()"
-                    onerror="showPdfError()"
-                    style="border: none;">
-                </iframe>
+                    onerror="showPdfError()">
             </div>
         </div>
 
@@ -334,8 +326,6 @@
     </div>
 
     <script>
-        let currentZoom = 100;
-        
         function hideLoading() {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('pdfFrame').style.display = 'block';
@@ -347,31 +337,10 @@
             document.getElementById('pdfFrame').style.display = 'none';
         }
         
-        function zoomIn() {
-            currentZoom = Math.min(currentZoom + 25, 200);
-            updateZoom();
-        }
-        
-        function zoomOut() {
-            currentZoom = Math.max(currentZoom - 25, 50);
-            updateZoom();
-        }
-        
-        function resetZoom() {
-            currentZoom = 100;
-            updateZoom();
-        }
-        
-        function updateZoom() {
-            const frame = document.getElementById('pdfFrame');
-            const currentSrc = frame.src.split('#')[0];
-            frame.src = currentSrc + `#view=FitH&zoom=${currentZoom}&toolbar=1&navpanes=1&scrollbar=1`;
-        }
-        
         function toggleFullscreen() {
-            const frame = document.getElementById('pdfFrame');
+            const viewer = document.querySelector('.pdf-viewer');
             if (!document.fullscreenElement) {
-                frame.requestFullscreen().catch(err => {
+                viewer.requestFullscreen().catch(err => {
                     console.log('Error attempting to enable fullscreen:', err);
                 });
             } else {
@@ -379,10 +348,10 @@
             }
         }
         
-        // Fallback loading hide (longer timeout for Google Drive)
+        // Fallback loading hide
         setTimeout(() => {
             hideLoading();
-        }, 8000);
+        }, 5000);
     </script>
 </body>
 </html>
