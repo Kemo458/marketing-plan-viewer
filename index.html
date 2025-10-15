@@ -262,11 +262,20 @@
             <h1>Marketing Plan</h1>
             <p>Comprehensive digital marketing strategy and growth plan</p>
             <div class="pdf-controls">
+                <button class="control-btn" onclick="zoomIn()">
+                    🔍+ Zoom In
+                </button>
+                <button class="control-btn" onclick="zoomOut()">
+                    🔍- Zoom Out
+                </button>
+                <button class="control-btn" onclick="resetZoom()">
+                    🔄 Reset
+                </button>
                 <button class="control-btn" onclick="toggleFullscreen()">
-                    🖥️ Fullscreen View
+                    🖥️ Fullscreen
                 </button>
                 <a href="https://drive.google.com/file/d/1gDFR6JWKTHuPdqSTB6KPx0yQLx5g8GtG/view?usp=sharing" target="_blank" class="control-btn">
-                    📄 View Full PDF
+                    📄 Full PDF
                 </a>
             </div>
         </div>
@@ -289,7 +298,7 @@
                 <img 
                     src="https://maas-log-prod.cn-wlcb.ufileos.com/anthropic/090e5078-23d5-4360-8820-56e870349ece/a6977d7b53c77709bf7b15fb08ddb16e.png?UCloudPublicKey=TOKEN_e15ba47a-d098-4fbd-9afc-a0dcf0e4e621&Expires=1760539105&Signature=CtYCaqroFC94CnL9kT6IvJYBnzQ=" 
                     alt="Marketing Plan"
-                    style="width: 100%; height: auto; max-width: 100%; object-fit: contain;"
+                    style="max-width: 100%; max-height: 80vh; height: auto; width: auto; object-fit: contain; display: block; margin: 0 auto; border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px;"
                     onload="hideLoading()"
                     onerror="showPdfError()">
             </div>
@@ -326,6 +335,8 @@
     </div>
 
     <script>
+        let currentZoom = 100;
+        
         function hideLoading() {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('pdfFrame').style.display = 'block';
@@ -335,6 +346,29 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('pdfError').style.display = 'block';
             document.getElementById('pdfFrame').style.display = 'none';
+        }
+        
+        function zoomIn() {
+            currentZoom = Math.min(currentZoom + 25, 200);
+            updateImageZoom();
+        }
+        
+        function zoomOut() {
+            currentZoom = Math.max(currentZoom - 25, 50);
+            updateImageZoom();
+        }
+        
+        function resetZoom() {
+            currentZoom = 100;
+            updateImageZoom();
+        }
+        
+        function updateImageZoom() {
+            const img = document.querySelector('#pdfFrame img');
+            if (img) {
+                img.style.transform = `scale(${currentZoom / 100})`;
+                img.style.transformOrigin = 'center center';
+            }
         }
         
         function toggleFullscreen() {
